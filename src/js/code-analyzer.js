@@ -85,18 +85,19 @@ function functionDeclarationHandle(obj){
 }
 
 function variableDeclarationHandle(obj){
-    //let elements = [];
-    //let i = 0;
     obj.declarations.forEach(variable => {
-        if(variable.init != null){
-            model[index] = {line: raw,type:'variable declaration',name:variable.id.name,condition:'',value:variable.init.value};
+        if(variable.init == null){
+            model[index] = {line: raw,type:'variable declaration',name:variable.id.name,condition:'',value:'null'};
         }else{
-            model[index] = {line: raw,type:'variable declaration',name:variable.id.name,condition:'',value: 'null'};
+            if(variable.init.type === 'MemberExpression'){
+                model[index] = {line: raw,type:'variable declaration',name:variable.id.name,condition:'',value: checkType(variable.init)};
+            }else{
+                model[index] = {line: raw,type:'variable declaration',name:variable.id.name,condition:'',value:variable.init.value};
+            }
         }
         index++;
     });
     raw++;
-    //return elements;
 }
 
 function whileStatementHandle(obj){

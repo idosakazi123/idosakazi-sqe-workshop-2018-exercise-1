@@ -41,7 +41,15 @@ describe('check variable declaration', () => {
             '<tr><th> Line </th><th> Type </th><th> Name </th><th> Condition </th><th> Value </th></tr><tr><td>1</td><td>variable declaration</td><td>x</td><td></td><td>0</td></tr>'
         );
     });
+});
 
+describe('check variable declaration2', () => {
+    it('check variable declaration with value', () => {
+        assert.equal(
+            createTable(getElementFromParseCode(parseCode('let temp = arr[j];'))),
+            '<tr><th> Line </th><th> Type </th><th> Name </th><th> Condition </th><th> Value </th></tr><tr><td>1</td><td>variable declaration</td><td>temp</td><td></td><td>arr[j]</td></tr>'
+        );
+    });
 });
 
 describe('check while', () => {
