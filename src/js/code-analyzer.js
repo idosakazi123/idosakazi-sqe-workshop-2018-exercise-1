@@ -119,7 +119,7 @@ function ifStatementHandle(obj){
     if (obj.alternate != null && obj.alternate.type == 'IfStatement') {
         ifType = 'else if statement';
         ifStatementHandle(obj.alternate);
-    } else {
+    } else if(obj.alternate != null) {
         model[index] = {line: raw, type: 'else statement',name:'',condition:'',value:''};
         raw++;
         index++;
